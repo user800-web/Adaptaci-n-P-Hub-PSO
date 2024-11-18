@@ -28,7 +28,6 @@ namespace Algoritmo_PSO_Problema_PHUB
         static double c1 = 1.5; // Constante cognitiva
         static double c2 = 1.5; // Constante social
         #endregion            
-        ///--------------------------------------V6--------------------------------------------------///
         ///-----------------------------------Variables globales-------------------------------------///
         static List<Cliente> clientesv6 = new List<Cliente>();            
         static int swarmSize = 50;
@@ -80,7 +79,7 @@ namespace Algoritmo_PSO_Problema_PHUB
             /// Codigo v6----------------------///
             /// 
             soluciones = "";
-            string bestsolucion=ejecutarV6();
+            string bestsolucion=ejecutar();
             txtSoluciones.Text = soluciones;
             Txt_MejorSolucion.Text = bestsolucion;
             ///--------------------------------///
@@ -241,9 +240,8 @@ namespace Algoritmo_PSO_Problema_PHUB
             return Math.Sqrt(Math.Pow(c1.X - c2.X, 2) + Math.Pow(c1.Y - c2.Y, 2));
         }
         
-        /// --------------------------------------V6--------------------------------------------------///
-        /// Metodos////
-        public string ejecutarV6()
+        /// Métodos////
+        public string ejecutar()
         {
             //asignacionClientesV6 = new Dictionary<int, List<(double X, double Y)>>();
             PSOHubOptimization pso = new PSOHubOptimization(clientesv6, capacidadHub, numHubs);
@@ -417,17 +415,11 @@ namespace Algoritmo_PSO_Problema_PHUB
                         distanciareal += 1000;
                     }
                 }
-                //MessageBox.Show("Valro de indi valor de currentAsignacionHubs" + asignacionHubs.Count.ToString());
                 // Guarda la asignación actual para poder mostrarla después de la optimización
-                //MessageBox.Show(asignacionHubs.Count.ToString());
                 control += asignacionHubs.Count();
                 this.currentAsignacionHubs = asignacionHubs.ToDictionary(entry => entry.Key, entry => new List<(Cliente, double)>(entry.Value));
-                //MessageBox.Show("Tercer valor de currentAsignacionHubs" + currentAsignacionHubs.Count.ToString());
 
                 this.currentDemandaHubs = demandaHubs;
-                //MessageBox.Show(currentAsignacionHubs.Count.ToString() + "     -    " + numHubs);
-
-                // Imprimir la asignación actual de clientes a hubs y las distancias
 
                 // Imprimir la asignación actual de clientes a hubs y las distancias
                 sbsoluciones.AppendLine("\nAsignación actual de clientes a hubs y distancias:");
@@ -446,16 +438,13 @@ namespace Algoritmo_PSO_Problema_PHUB
                 return distanciareal;
             }
 
-
             static double BestCost;
             static Particle Bestparticle = null;
             static Dictionary<int, List<(Cliente, double)>> BestAsignacionHubs=new Dictionary<int, List<(Cliente, double)>>();
 
-
             public (List<int>, double, double, Dictionary<int, List<(Cliente, double)>>) RunPSO(int swarmSize, int maxIterations)
             {
                 BestCost=double.MaxValue;
-                //MessageBox.Show("Segundo valor de currentAsignacionHubs" + currentAsignacionHubs.Count.ToString());
                 BestAsignacionHubs = new Dictionary<int, List<(Cliente, double)>>();
                 List<Particle> particles = new List<Particle>();
                 List<int> globalBestPosition = new List<int>();
