@@ -513,7 +513,6 @@ namespace Algoritmo_PSO_Problema_PHUB
                             // Actualizar posición
                             particle.Position[j] = Math.Abs(particle.Position[j] + (int)particle.Velocity[j]) % clientes.Count;
                         }
-
                         // Evaluar función objetivo
                         double cost = ObjectiveFunction(particle.Position);
                         if (cost < particle.BestCost)
@@ -541,7 +540,6 @@ namespace Algoritmo_PSO_Problema_PHUB
                 return (globalBestPosition, globalBestCost, BestCost, BestAsignacionHubs);
             }
         }
-
         private void label2_Click(object sender, EventArgs e)
         {
 
